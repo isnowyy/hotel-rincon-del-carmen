@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Consulta disponibilidad y realiza tu reserva en Hotel Rincón del Carmen de forma fácil y rápida." />
+  <title>Hotel Rincón del Carmen | Reservas</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/reservas.css" />
+</head>
+<body>
+  <!-- Barra de navegación (Web Component) -->
+  <hotel-navbar></hotel-navbar>
+
+  <main class="reservas-main">
+    <div class="container">
+      <h1 class="page-title">Consulta de Disponibilidad</h1>
+      <p class="page-subtitle">Elige tus fechas y tipo de habitación para ver las opciones disponibles.</p>
+
+      <!-- Formulario de búsqueda de disponibilidad -->
+      <section class="search-section" id="busqueda-disponibilidad">
+        <form class="search-form" id="form-busqueda" novalidate>
+          <div class="form-group">
+            <label for="fecha-entrada">Fecha de entrada</label>
+            <input type="date" id="fecha-entrada" name="fechaEntrada" required />
+          </div>
+          <div class="form-group">
+            <label for="fecha-salida">Fecha de salida</label>
+            <input type="date" id="fecha-salida" name="fechaSalida" required />
+          </div>
+          <div class="form-group">
+            <label for="tipo-habitacion">Tipo de habitación</label>
+            <select id="tipo-habitacion" name="tipoHabitacion">
+              <option value="">Todas</option>
+              <option value="sencilla">Sencilla</option>
+              <option value="doble">Doble</option>
+              <option value="suite">Suite</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="num-huespedes">Número de huéspedes</label>
+            <input type="number" id="num-huespedes" name="numHuespedes" min="1" max="10" value="1" />
+          </div>
+          <button type="submit" class="btn btn--primary" id="btn-buscar">Buscar disponibilidad</button>
+        </form>
+      </section>
+
+      <!-- Resultados de disponibilidad -->
+      <section class="results-section" id="resultados-disponibilidad" hidden>
+        <h2 class="section-title">Habitaciones Disponibles</h2>
+        <div class="rooms-grid" id="rooms-grid">
+          <!-- Las habitaciones se generan dinámicamente con reservas.js -->
+        </div>
+      </section>
+
+      <!-- Mis reservas -->
+      <section class="my-reservations" id="mis-reservas">
+        <h2 class="section-title">Mis Reservas</h2>
+        <div class="reservations-list" id="reservations-list">
+          <!-- Se carga con reservas.js -->
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Modal de confirmación (Web Component) -->
+  <hotel-modal id="modal-confirmacion"></hotel-modal>
+
+  <!-- Footer (Web Component) -->
+  <hotel-footer></hotel-footer>
+
+  <!-- Scripts -->
+  <script type="module" src="js/app.js"></script>
+  <script type="module" src="js/reservas.js"></script>
+  <script type="module" src="components/hotel-navbar.js"></script>
+  <script type="module" src="components/hotel-components.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Hotel Rincón del Carmen – Tu descanso perfecto nos espera. Reserva ahora y vive una experiencia inolvidable." />
+  <title>Hotel Rincón del Carmen | Inicio</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/landing.css" />
+</head>
+<body>
+  <!-- Barra de navegación (Web Component) -->
+  <hotel-navbar></hotel-navbar>
+
+  <!-- Hero Section -->
+  <main>
+    <section class="hero" id="hero">
+      <div class="hero__overlay"></div>
+      <div class="hero__content">
+        <h1 class="hero__title">Bienvenido al<br/><span>Rincón del Carmen</span></h1>
+        <p class="hero__subtitle">Un refugio de paz, confort y hospitalidad en el corazón de la ciudad.</p>
+        <a href="reservas.html" class="btn btn--primary" id="btn-reservar-hero">Reservar ahora</a>
+      </div>
+    </section>
+
+    <!-- Sección: Sobre el hotel -->
+    <section class="about" id="sobre-nosotros">
+      <div class="container">
+        <h2 class="section-title">Sobre Nosotros</h2>
+        <p class="section-text">
+          El Hotel Rincón del Carmen es un espacio diseñado para ofrecerte la mejor experiencia
+          de hospedaje: habitaciones elegantes, servicio personalizado y la calidez de un hogar lejos de casa.
+        </p>
+      </div>
+    </section>
+
+    <!-- Sección: Habitaciones destacadas (Carousel Web Component) -->
+    <section class="rooms" id="habitaciones">
+      <div class="container">
+        <h2 class="section-title">Nuestras Habitaciones</h2>
+        <hotel-carousel></hotel-carousel>
+      </div>
+    </section>
+
+    <!-- Sección: Servicios -->
+    <section class="services" id="servicios">
+      <div class="container">
+        <h2 class="section-title">Nuestros Servicios</h2>
+        <div class="services__grid">
+          <div class="service-card">
+            <span class="service-card__icon">🍽️</span>
+            <h3>Restaurante</h3>
+            <p>Gastronomía local e internacional para todos los gustos.</p>
+          </div>
+          <div class="service-card">
+            <span class="service-card__icon">🏊</span>
+            <h3>Piscina</h3>
+            <p>Relájate en nuestra piscina al aire libre disponible todo el día.</p>
+          </div>
+          <div class="service-card">
+            <span class="service-card__icon">💆</span>
+            <h3>Spa & Bienestar</h3>
+            <p>Tratamientos de relajación para rejuvenecer cuerpo y mente.</p>
+          </div>
+          <div class="service-card">
+            <span class="service-card__icon">🚗</span>
+            <h3>Parqueadero</h3>
+            <p>Estacionamiento seguro y vigilado las 24 horas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer (Web Component) -->
+  <hotel-footer></hotel-footer>
+
+  <!-- Scripts -->
+  <script type="module" src="js/app.js"></script>
+  <script type="module" src="components/hotel-navbar.js"></script>
+  <script type="module" src="components/hotel-components.js"></script>
+</body>
+</html>

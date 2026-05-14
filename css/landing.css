@@ -1,0 +1,133 @@
+/* =============================================
+   css/landing.css
+   Estilos exclusivos de la página de inicio
+   Hotel Rincón del Carmen
+   ============================================= */
+
+/* ----------- Hero Section ----------- */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      160deg,
+      rgba(15, 26, 22, 0.85) 0%,
+      rgba(44, 74, 62, 0.7) 60%,
+      rgba(15, 26, 22, 0.95) 100%
+    ),
+    url('https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=1600&q=80') center/cover no-repeat;
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 60%, rgba(200,145,74,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: var(--space-8) var(--space-6);
+  animation: fadeIn 1s ease both;
+}
+
+.hero__title {
+  font-size: var(--font-size-4xl);
+  color: var(--color-text);
+  margin-bottom: var(--space-5);
+  text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+  line-height: 1.1;
+}
+
+.hero__title span {
+  color: var(--color-primary);
+  display: block;
+  font-style: italic;
+}
+
+.hero__subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-muted);
+  max-width: 540px;
+  margin: 0 auto var(--space-10);
+  line-height: 1.8;
+}
+
+/* ----------- About Section ----------- */
+.about {
+  padding: var(--space-20) 0;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+}
+
+.about .container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+/* ----------- Rooms Section ----------- */
+.rooms {
+  padding: var(--space-20) 0;
+  background: var(--color-bg);
+}
+
+/* ----------- Services Section ----------- */
+.services {
+  padding: var(--space-20) 0;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+}
+
+.services__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-6);
+  margin-top: var(--space-8);
+}
+
+.service-card {
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8) var(--space-6);
+  text-align: center;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md), var(--shadow-glow);
+  border-color: var(--color-primary);
+}
+
+.service-card__icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: var(--space-4);
+}
+
+.service-card h3 {
+  font-family: var(--font-serif);
+  font-size: var(--font-size-xl);
+  color: var(--color-primary);
+  margin-bottom: var(--space-3);
+}
+
+.service-card p {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  line-height: 1.7;
+}
+
+/* ----------- Responsive ----------- */
+@media (max-width: 600px) {
+  .hero__title { font-size: 2.2rem; }
+  .hero__subtitle { font-size: var(--font-size-md); }
+}

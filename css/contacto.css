@@ -1,0 +1,129 @@
+/* =============================================
+   css/contacto.css
+   Estilos de la página de contacto
+   Hotel Rincón del Carmen
+   ============================================= */
+
+.contacto-main {
+  padding-top: calc(var(--navbar-height) + var(--space-12));
+  padding-bottom: var(--space-20);
+  min-height: 100vh;
+}
+
+/* ----------- Layout de dos columnas ----------- */
+.contacto-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-10);
+  align-items: start;
+}
+
+/* ----------- Formulario de contacto ----------- */
+.contacto-form-section {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-md);
+}
+
+.contacto-form .btn {
+  width: 100%;
+  margin-top: var(--space-3);
+}
+
+.form-feedback {
+  margin-top: var(--space-4);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  text-align: center;
+}
+
+.form-feedback.success {
+  background: rgba(76, 175, 125, 0.15);
+  color: var(--color-success);
+  border: 1px solid var(--color-success);
+}
+
+.form-feedback.error {
+  background: rgba(224, 92, 92, 0.15);
+  color: var(--color-danger);
+  border: 1px solid var(--color-danger);
+}
+
+/* ----------- Panel de información ----------- */
+.contacto-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.info-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  transition: border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.info-item:hover {
+  border-color: var(--color-primary);
+  transform: translateX(4px);
+}
+
+.info-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  width: 40px;
+  text-align: center;
+}
+
+.info-item strong {
+  display: block;
+  color: var(--color-primary);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-1);
+}
+
+.info-item p,
+.info-item a {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-md);
+}
+
+.info-item a:hover { color: var(--color-primary); }
+
+/* ----------- Mapa ----------- */
+.map-container {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+}
+
+.map-container iframe {
+  display: block;
+  filter: grayscale(30%) invert(85%) hue-rotate(170deg);
+}
+
+/* ----------- Responsive ----------- */
+@media (max-width: 900px) {
+  .contacto-layout {
+    grid-template-columns: 1fr;
+  }
+  .contacto-info { order: -1; }
+}

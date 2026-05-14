@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contáctanos y encuéntranos fácilmente. Hotel Rincón del Carmen, siempre a tu disposición." />
+  <title>Hotel Rincón del Carmen | Contacto</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/contacto.css" />
+</head>
+<body>
+  <!-- Barra de navegación (Web Component) -->
+  <hotel-navbar></hotel-navbar>
+
+  <main class="contacto-main">
+    <div class="container">
+      <h1 class="page-title">Contáctanos</h1>
+      <p class="page-subtitle">Estamos aquí para ayudarte. Escríbenos o visítanos.</p>
+
+      <div class="contacto-layout">
+        <!-- Formulario de contacto -->
+        <section class="contacto-form-section" id="seccion-formulario">
+          <h2 class="section-title">Envíanos un mensaje</h2>
+          <form class="contacto-form" id="form-contacto" novalidate>
+            <div class="form-group">
+              <label for="nombre">Nombre completo</label>
+              <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Correo electrónico</label>
+              <input type="email" id="email" name="email" placeholder="tu@correo.com" required />
+            </div>
+            <div class="form-group">
+              <label for="telefono">Teléfono (opcional)</label>
+              <input type="tel" id="telefono" name="telefono" placeholder="+57 300 000 0000" />
+            </div>
+            <div class="form-group">
+              <label for="asunto">Asunto</label>
+              <input type="text" id="asunto" name="asunto" placeholder="¿En qué podemos ayudarte?" required />
+            </div>
+            <div class="form-group">
+              <label for="mensaje">Mensaje</label>
+              <textarea id="mensaje" name="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary" id="btn-enviar-contacto">Enviar mensaje</button>
+          </form>
+          <div class="form-feedback" id="feedback-contacto" hidden></div>
+        </section>
+
+        <!-- Información de contacto y ubicación -->
+        <aside class="contacto-info" id="informacion-contacto">
+          <h2 class="section-title">Información de contacto</h2>
+          <ul class="info-list">
+            <li class="info-item">
+              <span class="info-icon">📍</span>
+              <div>
+                <strong>Dirección</strong>
+                <p>Calle del Carmen #12-34, Centro Histórico</p>
+              </div>
+            </li>
+            <li class="info-item">
+              <span class="info-icon">📞</span>
+              <div>
+                <strong>Teléfono</strong>
+                <p><a href="tel:+573001234567">+57 300 123 4567</a></p>
+              </div>
+            </li>
+            <li class="info-item">
+              <span class="info-icon">✉️</span>
+              <div>
+                <strong>Correo</strong>
+                <p><a href="mailto:info@hotelrincondelcarmen.com">info@hotelrincondelcarmen.com</a></p>
+              </div>
+            </li>
+            <li class="info-item">
+              <span class="info-icon">🕐</span>
+              <div>
+                <strong>Horario de atención</strong>
+                <p>Lunes a Domingo: 24 horas</p>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Mapa embebido (placeholder) -->
+          <div class="map-container" id="mapa-ubicacion">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000!2d-75.5!3d6.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMTInMDAuMCJOIDc1wrAzMCcwMC4wIlc!5e0!3m2!1ses!2sco!4v1600000000000!5m2!1ses!2sco"
+              width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade" title="Ubicación Hotel Rincón del Carmen">
+            </iframe>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer (Web Component) -->
+  <hotel-footer></hotel-footer>
+
+  <!-- Scripts -->
+  <script type="module" src="js/app.js"></script>
+  <script type="module" src="js/contacto.js"></script>
+  <script type="module" src="components/hotel-navbar.js"></script>
+  <script type="module" src="components/hotel-components.js"></script>
+</body>
+</html>

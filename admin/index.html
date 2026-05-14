@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Panel de administración interno – Hotel Rincón del Carmen." />
+  <title>Admin | Hotel Rincón del Carmen</title>
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/admin.css" />
+</head>
+<body class="admin-body">
+
+  <!-- ════════ PANTALLA DE LOGIN ════════ -->
+  <div class="admin-login-screen" id="admin-login-screen">
+    <div class="login-card">
+      <div class="login-brand">
+        <span>🏨</span>
+        <span>Rincón del Carmen</span>
+      </div>
+      <h1 class="login-title">Acceso Administrativo</h1>
+      <form class="login-form" id="form-login-admin" novalidate>
+        <div class="form-group">
+          <label for="admin-email">Correo electrónico</label>
+          <input type="email" id="admin-email" name="email" placeholder="admin@hotel.com" required />
+        </div>
+        <div class="form-group">
+          <label for="admin-password">Contraseña</label>
+          <input type="password" id="admin-password" name="password" placeholder="••••••••" required />
+        </div>
+        <div class="form-error" id="login-error" hidden></div>
+        <button type="submit" class="btn btn--primary w-full" id="btn-login-admin">Ingresar al panel</button>
+      </form>
+      <a href="../index.html" class="login-back">← Volver al sitio</a>
+    </div>
+  </div>
+
+  <!-- ════════ PANEL PRINCIPAL (oculto hasta autenticar) ════════ -->
+  <div class="admin-app" id="admin-app" style="display:none">
+
+    <!-- Sidebar -->
+    <aside class="admin-sidebar" id="admin-sidebar">
+      <div class="sidebar-brand">
+        <span class="sidebar-icon">🏨</span>
+        <span class="sidebar-name">Rincón del Carmen</span>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Menú admin">
+        <ul>
+          <li>
+            <a href="#" class="sidebar-link active" id="nav-dashboard" data-section="sec-dashboard">
+              📊 <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link" id="nav-reservas-admin" data-section="sec-reservas">
+              📅 <span>Reservas</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link" id="nav-habitaciones-admin" data-section="sec-habitaciones">
+              🛏️ <span>Habitaciones</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link" id="nav-usuarios-admin" data-section="sec-usuarios">
+              👤 <span>Usuarios</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-link" id="nav-contactos-admin" data-section="sec-contactos">
+              ✉️ <span>Contactos</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user" id="sidebar-user-info"></div>
+        <button class="btn btn--danger w-full" id="btn-logout">🚪 Cerrar sesión</button>
+      </div>
+    </aside>
+
+    <!-- Contenido principal -->
+    <div class="admin-content" id="admin-content">
+
+      <!-- Topbar -->
+      <header class="admin-topbar" id="admin-topbar">
+        <button class="topbar-toggle" id="btn-toggle-sidebar" aria-label="Abrir menú">☰</button>
+        <h2 class="topbar-title" id="topbar-title">Dashboard</h2>
+        <div class="topbar-user">
+          <span id="admin-username-top"></span>
+        </div>
+      </header>
+
+      <main class="admin-main" id="admin-main">
+
+        <!-- ── SECCIÓN: Dashboard ── -->
+        <section class="admin-section-page" id="sec-dashboard">
+          <div class="stats-grid" id="stats-grid">
+            <div class="stat-card">
+              <span class="stat-icon">📅</span>
+              <div class="stat-info">
+                <h3 class="stat-value" id="total-reservas">0</h3>
+                <p class="stat-label">Reservas totales</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <span class="stat-icon">🛏️</span>
+              <div class="stat-info">
+                <h3 class="stat-value" id="total-habitaciones">0</h3>
+                <p class="stat-label">Habitaciones</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <span class="stat-icon">👤</span>
+              <div class="stat-info">
+                <h3 class="stat-value" id="total-usuarios">0</h3>
+                <p class="stat-label">Usuarios registrados</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <span class="stat-icon">✉️</span>
+              <div class="stat-info">
+                <h3 class="stat-value" id="total-mensajes">0</h3>
+                <p class="stat-label">Mensajes</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="table-block">
+            <h2 class="section-title">Reservas recientes</h2>
+            <div class="table-wrapper">
+              <table class="admin-table" id="tabla-reservas-dash">
+                <thead><tr>
+                  <th>Huésped</th><th>Habitación</th><th>Entrada</th><th>Salida</th><th>Estado</th>
+                </tr></thead>
+                <tbody id="tbody-reservas-dash"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── SECCIÓN: Reservas ── -->
+        <section class="admin-section-page" id="sec-reservas" hidden>
+          <h2 class="section-title">Gestión de Reservas</h2>
+          <div class="table-wrapper">
+            <table class="admin-table" id="tabla-reservas">
+              <thead><tr>
+                <th>ID</th><th>Huésped</th><th>Habitación</th><th>Entrada</th><th>Salida</th><th>Noches</th><th>Total</th><th>Estado</th><th>Acción</th>
+              </tr></thead>
+              <tbody id="tbody-reservas"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ── SECCIÓN: Habitaciones ── -->
+        <section class="admin-section-page" id="sec-habitaciones" hidden>
+          <h2 class="section-title">Habitaciones</h2>
+          <div class="table-wrapper">
+            <table class="admin-table" id="tabla-habitaciones">
+              <thead><tr>
+                <th>Nombre</th><th>Tipo</th><th>Capacidad</th><th>Precio/noche</th><th>Disponible</th>
+              </tr></thead>
+              <tbody id="tbody-habitaciones"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ── SECCIÓN: Usuarios ── -->
+        <section class="admin-section-page" id="sec-usuarios" hidden>
+          <h2 class="section-title">Usuarios Registrados</h2>
+          <div class="table-wrapper">
+            <table class="admin-table" id="tabla-usuarios">
+              <thead><tr>
+                <th>Nombre</th><th>Correo</th><th>Rol</th><th>Fecha registro</th>
+              </tr></thead>
+              <tbody id="tbody-usuarios"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ── SECCIÓN: Contactos ── -->
+        <section class="admin-section-page" id="sec-contactos" hidden>
+          <h2 class="section-title">Mensajes de Contacto</h2>
+          <div class="table-wrapper">
+            <table class="admin-table" id="tabla-contactos">
+              <thead><tr>
+                <th>Nombre</th><th>Correo</th><th>Asunto</th><th>Fecha</th><th>Estado</th>
+              </tr></thead>
+              <tbody id="tbody-contactos"></tbody>
+            </table>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script type="module" src="../js/app.js"></script>
+  <script type="module" src="../js/admin.js"></script>
+</body>
+</html>
