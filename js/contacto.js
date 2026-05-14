@@ -37,6 +37,12 @@ function initContacto() {
       return;
     }
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      mostrarFeedback('error', 'Por favor ingresa un correo electrónico válido.');
+      return;
+    }
+
     const msgObj = {
       id: generarId(),
       nombre, email, telefono, asunto, mensaje,

@@ -129,10 +129,28 @@ function renderMisReservas() {
   });
 }
 
+function mostrarMensajeModal(htmlContent) {
+  const modal = document.getElementById('modal-confirmacion');
+  if (modal?.open) {
+    modal.open(htmlContent);
+  } else {
+    // Fallback si el modal aún no está listo
+    const texto = htmlContent.replace(/<[^>]+>/g, '');
+    alert(texto);
+  }
+}
+
 function initReservas() {
   const form = document.getElementById('form-busqueda');
   const grid = document.getElementById('rooms-grid');
   const resultSection = document.getElementById('resultados-disponibilidad');
+
+  // Establecer fecha mínima como hoy en los inputs de fecha
+  const hoy = new Date().toISOString().split('T')[0];
+  const inputEntrada = document.getElementById('fecha-entrada');
+  const inputSalida  = document.getElementById('fecha-salida');
+  if (inputEntrada) inputEntrada.min = hoy;
+  if (inputSalida)  inputSalida.min  = hoy;
 
   if (form) {
     form.addEventListener('submit', e => {
@@ -141,6 +159,20 @@ function initReservas() {
       const fs = document.getElementById('fecha-salida').value;
       const tipo = document.getElementById('tipo-habitacion').value;
       const hues = document.getElementById('num-huespedes').value;
+
+      if (!fe || !fs) {
+        mostrarMensajeModal('<h3>⚠️ Fechas requeridas</h3><p>Por favor selecciona las fechas de entrada y salida.</p>');
+        return;
+      }
+      if (fe >= fs) {
+        mostrarMensajeModal('<h3>⚠️ Fechas inválidas</h3><p>La fecha de salida debe ser posterior a la fecha de entrada.</p>');
+        return;
+      }
+      if (fe < hoy) {
+        mostrarMensajeModal('<h3>⚠️ Fecha inválida</h3><p>La fecha de entrada no puede ser en el pasado.</p>');
+        return;
+      }
+
       const disponibles = buscarDisponibilidad(fe, fs, tipo, hues);
 
       grid.innerHTML = '';
@@ -155,8 +187,18 @@ function initReservas() {
       grid.querySelectorAll('[data-reservar]').forEach(btn => {
         btn.addEventListener('click', () => {
           const r = crearReserva({ habitacionId: btn.dataset.reservar, fechaEntrada: fe, fechaSalida: fs, huespedes: hues });
-          if (r.success) { alert(`✅ Reserva confirmada! ID: ${r.reserva.id}`); renderMisReservas(); }
-          else alert(`❌ ${r.error}`);
+          if (r.success) {
+            mostrarMensajeModal(`
+              <h3>✅ Reserva confirmada</h3>
+              <p><strong>Habitación:</strong> ${r.reserva.habitacionNombre}</p>
+              <p><strong>Entrada:</strong> ${r.reserva.fechaEntrada} &nbsp;|&nbsp; <strong>Salida:</strong> ${r.reserva.fechaSalida}</p>
+              <p><strong>Noches:</strong> ${r.reserva.noches} &nbsp;|&nbsp; <strong>Total:</strong> ${formatPrecio(r.reserva.precioTotal)}</p>
+              <p style="margin-top:0.75rem;font-size:0.8rem;color:#9a9a8a">ID: ${r.reserva.id}</p>
+            `);
+            renderMisReservas();
+          } else {
+            mostrarMensajeModal(`<h3>❌ No se pudo reservar</h3><p>${r.error}</p>`);
+          }
         });
       });
     });

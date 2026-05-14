@@ -162,6 +162,24 @@ function initAdmin() {
   document.getElementById('admin-login-screen').style.display = 'flex';
   document.getElementById('admin-app').style.display          = 'none';
 
+  // Registrar listeners del panel antes de verificar la sesión,
+  // para que funcionen tanto en el login inicial como al recargar con sesión activa.
+  document.getElementById('btn-logout')?.addEventListener('click', () => {
+    if (confirm('¿Cerrar sesión?')) Auth.logout();
+  });
+
+  document.getElementById('btn-toggle-sidebar')?.addEventListener('click', () => {
+    document.getElementById('admin-sidebar')?.classList.toggle('open');
+  });
+
+  document.querySelectorAll('.sidebar-link[data-section]').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      navegarA(link.dataset.section);
+      document.getElementById('admin-sidebar')?.classList.remove('open');
+    });
+  });
+
   // Si ya hay sesión de admin → ir directo al panel
   if (Auth.isAdmin()) {
     mostrarPanel(Auth.getSession());
@@ -213,25 +231,6 @@ function initAdmin() {
       btnLogin.textContent = 'Ingresar al panel';
       btnLogin.disabled = false;
     }
-  });
-
-  // Cerrar sesión
-  document.getElementById('btn-logout')?.addEventListener('click', () => {
-    if (confirm('¿Cerrar sesión?')) Auth.logout();
-  });
-
-  // Sidebar toggle móvil
-  document.getElementById('btn-toggle-sidebar')?.addEventListener('click', () => {
-    document.getElementById('admin-sidebar')?.classList.toggle('open');
-  });
-
-  // Navegación sidebar
-  document.querySelectorAll('.sidebar-link[data-section]').forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      navegarA(link.dataset.section);
-      document.getElementById('admin-sidebar')?.classList.remove('open');
-    });
   });
 }
 
